@@ -10,11 +10,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <!-- Styles and Fonts -->
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|IBM+Plex+Sans:400,400i,700,700i&amp;display=swap"
+        rel="stylesheet">
+
     <!-- Title -->
     <title>Budgeting and Bills</title>
 </head>
 
-<body>
+<body class="wrap">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md">
         <div class="container-fluid">
@@ -33,70 +38,95 @@
 
     <!-- Overview Panel -->
     <div class="overview_section">
-
-
+        <div>
+            <h1 class="text-center">You have £100 to spend</h1>
+        </div>
     </div>
 
+    <hr>
+
+
     <!-- Enxpenses and Incomes Input Panel -->
-    <div class="container input_section">
+    <div class="container-fluid">
         <div class="row">
+            <!-- INCOME -->
             <div class="col incomes">
-                <span class="income_title">Incomes</span>
-                <div class="income_list">
-                    <!--
-                        <div class="item clearfix" id="income-0">
-                            <div class="item__description">Salary</div>
-                            <div class="right clearfix">
-                                <div class="item__value">+ 2,100.00</div>
-                                <div class="item__delete">
-                                    <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="item clearfix" id="income-1">
-                            <div class="item__description">Sold car</div>
-                            <div class="right clearfix">
-                                <div class="item__value">+ 1,500.00</div>
-                                <div class="item__delete">
-                                    <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        -->
-                </div>
+                <header class="head">
+                    <div class="left">
+                        <h2>Incomings</h2>
+                        <a href="#">Add new income</a>
+                    </div>
+                    <form class="right">
+                        <labe>Sort by:</labe><br>
+                        <select>
+                            <option>Highest to lowest cost</option>
+                            <option>Lowest to highest cost</option>
+                            <option>Alphabetically</option>
+                        </select>
+                    </form>
+                </header>
+
+                <table class="table" id="income_list">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                            <th>Edit/Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- <tr>
+                            <td>Rent</td>
+                            <td>1300</td>
+                            <td>Rent</td>
+                            <td>Edit/Delete</td>
+                        </tr> -->
+                    </tbody>
+                </table>
             </div>
 
+            <!-- EXPENSES -->
             <div class="col expenses">
-                <span class="expenses_title">Expenses</span>
-                <div class="expenses_list">
-                    <!--
-                        <div class="item clearfix" id="expense-0">
-                            <div class="item__description">Apartment rent</div>
-                            <div class="right clearfix">
-                                <div class="item__value">- 900.00</div>
-                                <div class="item__percentage">21%</div>
-                                <div class="item__delete">
-                                    <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item clearfix" id="expense-1">
-                            <div class="item__description">Grocery shopping</div>
-                            <div class="right clearfix">
-                                <div class="item__value">- 435.28</div>
-                                <div class="item__percentage">10%</div>
-                                <div class="item__delete">
-                                    <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button>
-                                </div>
-                            </div>
-                        </div>
-                        -->
-                </div>
+                <header class="head">
+                    <div class="left">
+                        <h2>Outgoings</h2>
+                        <a href="#">Add new expense</a>
+                    </div>
+                    <form class="right">
+                        <labe>Sort by:</labe><br>
+                        <select>
+                            <option>Highest to lowest cost</option>
+                            <option>Lowest to highest cost</option>
+                            <option>Alphabetically</option>
+                        </select>
+                    </form>
+                </header>
+                <table class="table" id="expenses_list">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                            <th>Edit/Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- <tr>
+                                    <td>Rent</td>
+                                    <td>1300</td>
+                                    <td>Rent</td>
+                                    <td>Edit/Delete</td>
+                                </tr> -->
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+
+    <footer>
+        Made by Kiki, inspired by Dan Eden
+    </footer>
 
 
 
