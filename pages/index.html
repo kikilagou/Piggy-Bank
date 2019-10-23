@@ -20,34 +20,37 @@
 </head>
 
 <body class="wrap">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-md">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">Home</a>
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class=""></span>Dashboard</a></li>
-                <li><a href="#"><span class=""></span>Account</a></li>
-                <li><a href="#"><span class=""></span>Logout</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <hr>
-
-    <!-- Overview Panel -->
-    <div class="overview_section">
-        <div>
-            <h1 class="text-center">You have £100 to spend</h1>
-        </div>
-    </div>
-
-    <hr>
-
-
-    <!-- Enxpenses and Incomes Input Panel -->
     <div class="container-fluid">
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Home</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span class=""></span>Dashboard</a></li>
+                    <li><a href="#"><span class=""></span>Account</a></li>
+                    <li><a href="#"><span class=""></span>Logout</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <br>
+
+
+
+        <!-- Overview Panel -->
+        <div class="overview_section">
+            <div>
+                <h1 class="text-center">You have £100 to spend</h1>
+            </div>
+        </div>
+
+        <hr>
+
+
+        <!-- Enxpenses and Incomes Input Panel -->
         <div class="row">
             <!-- INCOME -->
             <div class="col incomes">
@@ -66,11 +69,28 @@
                     </form>
                 </header>
 
-                <table class="table" id="income_list">
+                <br><br>
+
+                <!-- <div class="landing tac">
+                        <h2 class="mb2">No bills to show</h2>
+                        <p class="mb0">You've got no bills to pay at the moment. <a href="/bills/add">Add one</a> if you
+                            need to!</p>
+                    </div> -->
+
+
+                <div aria-hidden="true" class="breakdown flex">
+                    <!-- <div class="breakdown__section" style="
+                                    --itemColor: #000000;
+                                    width: 1.6715830875123%;
+                                ">
+                    </div> -->
+                </div>
+
+                <table class="table borderless" id="income_list">
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Amount</th>
+                            <th class="table_float_right">Amount</th>
                             <th>Description</th>
                             <th>Edit/Delete</th>
                         </tr>
@@ -83,7 +103,14 @@
                             <td>Edit/Delete</td>
                         </tr> -->
                     </tbody>
-                </table>
+                    <tfoot>
+                        <tr>
+                            <th class="table_float_right">Total</th>
+                            <td>2000</td>
+                            <td colspan="2"></td>
+                        </tr>
+                    </tfoot>
+                </table> -->
             </div>
 
             <!-- EXPENSES -->
@@ -102,6 +129,22 @@
                         </select>
                     </form>
                 </header>
+
+                <br><br>
+
+                <!-- <div class="landing tac">
+                        <h2 class="mb2">No bills to show</h2>
+                        <p class="mb0">You've got no bills to pay at the moment. <a href="/bills/add">Add one</a> if you
+                            need to!</p>
+                    </div> -->
+
+                <div aria-hidden="true" class="breakdown flex">
+                    <!-- <div class="breakdown__section" style="
+                                        --itemColor: #000000;
+                                        width: 83.579154375615%;
+                                    ">
+                            <span class="breakdown__item-name"></span></div> -->
+                </div>
                 <table class="table" id="expenses_list">
                     <thead>
                         <tr>
@@ -119,6 +162,13 @@
                                     <td>Edit/Delete</td>
                                 </tr> -->
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Total</th>
+                            <td>2000</td>
+                            <td colspan="2"></td>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

@@ -56,11 +56,70 @@ select {
     /* Remove default arrow */
 }
 
+/* table {
+    margin-top: 3em;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-collapse: separate;
+    border-top: 1px solid gray;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    font-size: 1.15em;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th,
+.table>tfoot>tr>td, .table>tfoot>tr>th,
+.table>thead>tr>td, .table>thead>tr>th
+{
+  border: 0
+}
+
+.table>tfoot>tr>td, .table>tfoot>tr>th {
+    border: 1px solid black'
+} */
+
+.table>tbody>tr>td, .table>tbody>tr>th,
+.table>tfoot>tr>td, .table>tfoot>tr>th,
+.table>thead>tr>td, .table>thead>tr>th
+{
+  border: 0
+}
+
+.breakdown {
+    margin-top: 3em;
+    background-color: gray;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+table {
+    
+    border-top: 1px solid gray;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    font-size: 1.15em;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+}
+
+tfoot {
+    display: table-footer-group;
+    vertical-align: middle;
+}
 .navbar {
-    margin-bottom: 3rem;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    position: fixed;
+    background-color: var(--background);
+    border-bottom: 3px solid black;
 }
 
 .navbar a {
@@ -69,9 +128,10 @@ select {
     color: black;
 }
 
-.navbar-nav>li {
+.navbar-nav li {
     padding-left: 1rem;
     padding-right: 1rem;
+    position: inline;
 }
 
 .left {
@@ -107,4 +167,12 @@ select {
 
 .container {
     margin: 0 0 0 0;
+}
+
+.incomes {
+    margin-right: 1em;
+}
+
+.expenses {
+    margin-left: 1em;
 }
