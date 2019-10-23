@@ -48,6 +48,14 @@ a {
 }
 
 select {
+    box-sizing: border-box;
+    padding: .25em .75em;
+    background-color: var(--inputBg);
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    border-bottom: 2px solid var(--divider);
+    border-radius: 4px 4px 0 0;
     background: var(--inputBg);
     padding: 0.5rem;
     -webkit-appearance: none;
@@ -55,6 +63,8 @@ select {
     appearance: none;
     /* Remove default arrow */
 }
+
+
 
 /* table {
     margin-top: 3em;

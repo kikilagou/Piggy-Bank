@@ -1,0 +1,2 @@
+1. when the screen is small remove the left margin and the right margins from the outgoings and the incomings
+

@@ -38,8 +38,6 @@
 
         <br>
 
-
-
         <!-- Overview Panel -->
         <div class="overview_section">
             <div>
@@ -49,17 +47,45 @@
 
         <hr>
 
-        <!-- Enxpenses and Incomes Input Panel -->
+        <!--EXPENSES AND INCOMINGS INPUT PANEL -->
         <div class="row">
+
+            <!-- MODAL FOR INPUTING NEW DATA -->
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Modal Heading</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            Modal body..
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
             <!-- INCOME -->
             <div class="col incomes">
                 <header class="head">
                     <div class="left">
                         <h2>Incomings</h2>
-                        <a href="#">Add new income</a>
+                        <a id="new_income" data-toggle="modal" data-target="#myModal" href="#myModal" onclick='check()'>Add new
+                            income</a>
                     </div>
                     <form class="right">
-                        <labe>Sort by:</labe><br>
+                        <labe><b>Sort by:</b></labe><br>
                         <select>
                             <option>Highest to lowest cost</option>
                             <option>Lowest to highest cost</option>
@@ -75,8 +101,6 @@
                         <p class="mb0">You've got no bills to pay at the moment. <a href="/bills/add">Add one</a> if you
                             need to!</p>
                     </div> -->
-
-
                 <div aria-hidden="true" class="breakdown flex">
                     <!-- <div class="breakdown__section" style="
                                     --itemColor: #000000;
@@ -117,10 +141,10 @@
                 <header class="head">
                     <div class="left">
                         <h2>Outgoings</h2>
-                        <a href="#">Add new expense</a>
+                        <a id="new_expense"  data-toggle="modal" data-target="#myModal" href="#myModal" onclick='check()' >Add new expense</a>
                     </div>
                     <form class="right">
-                        <labe>Sort by:</labe><br>
+                        <labe><b>Sort by:</b></labe><br>
                         <select>
                             <option>Highest to lowest cost</option>
                             <option>Lowest to highest cost</option>
@@ -136,7 +160,6 @@
                         <p class="mb0">You've got no bills to pay at the moment. <a href="/bills/add">Add one</a> if you
                             need to!</p>
                     </div> -->
-
                 <div aria-hidden="true" class="breakdown flex">
                     <!-- <div class="breakdown__section" style="
                                         --itemColor: #000000;
@@ -174,10 +197,21 @@
     </div>
 
     <footer>
-        Made by Kiki, inspired by Dan Eden
     </footer>
 
 
+    <script type='text/javascript'>
+        function check() {
+            if (document.getElementById('new_income')) {
+                var modal = document.getElementById('myModal');
+                document.querySelector('.modal-title').innerHTML = "Add a new income"
+            } else if (document.getElementById('new_expense')) {
+                var modal = document.getElementById('myModal');
+                document.querySelector('.modal-title').innerHTML = "New a new expense"
+                
+            }
+        }
+    </script>
 
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

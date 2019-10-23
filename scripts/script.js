@@ -1,14 +1,16 @@
 // DATA MODULE
-var dataController = (function() {
+var dataController = (function () {
 
 });
 
 // UI MODULE
-var UIController = (function() {
+var UIController = (function () {
+
+    
 
 });
 
 // CONTROLLER MODULE
-var controller = (function(budgetCtrl, UICtrl) {
+var controller = (function (budgetCtrl, UICtrl) {
 
 });
