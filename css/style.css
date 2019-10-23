@@ -39,7 +39,7 @@ th {
 }
 
 hr {
-    margin-top: 2rem;
+    margin-top: 3rem;
     margin-bottom: 3rem;
 }
 
@@ -78,11 +78,13 @@ select {
     border: 1px solid black'
 } */
 
-.table>tbody>tr>td, .table>tbody>tr>th,
-.table>tfoot>tr>td, .table>tfoot>tr>th,
-.table>thead>tr>td, .table>thead>tr>th
-{
-  border: 0
+.table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+    border: 0
 }
 
 .breakdown {
@@ -93,7 +95,7 @@ select {
 }
 
 table {
-    
+
     border-top: 1px solid gray;
     border-left: 1px solid gray;
     border-right: 1px solid gray;
@@ -117,6 +119,7 @@ tfoot {
     display: table-footer-group;
     vertical-align: middle;
 }
+
 .navbar {
     background-color: var(--background);
     border-bottom: 3px solid black;
@@ -175,4 +178,18 @@ tfoot {
 
 .expenses {
     margin-left: 1em;
+}
+
+.overview_section {
+    margin-top: 2em;
+}
+
+.monthly_total {
+    background-color: var(--safe) ;
+    border-radius: 6px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-right: 3px;
+    padding-left: 3px;
+    color: white;
 }
