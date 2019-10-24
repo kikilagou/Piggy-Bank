@@ -15,7 +15,15 @@ var dataController = (function () {
         this.amount = amount;
     }
 
-    data = {
+    var calculateTotal = function (type) {
+        var sum = 0;
+        data.allItems[type].forEach(function (cur) {
+            sum += cur.amount;
+        });
+        data.totals[type] = sum;
+    }
+
+    var data = {
         allItems: {
             '+': [],
             '-': []
@@ -23,7 +31,9 @@ var dataController = (function () {
         totals: {
             '+': 0,
             '-': 0
-        }
+        },
+        budget: 0,
+        percentage: -1
     }
 
     // Allow other functions to add items 
@@ -46,6 +56,32 @@ var dataController = (function () {
 
             data.allItems[type].push(newItem);
             return newItem;
+        },
+
+        calculateTotal: function () {
+            // calculate total income and expenses 
+            calculateTotal('+');
+            calculateTotal('-');
+
+            // calc the budget (income - expenses)
+            data.budget = data.totals["+"] - data.totals["-"];
+
+            //  calc % of income spent 
+            if (data.totals["+"] > 0) {
+                data.percentage = Math.round((data.totals["-"] / data.totals["+"]) * 100);
+
+            } else {
+                data.percentage = -1;
+            }
+        },
+
+        getBudget: function () {
+            return {
+                budget: data.budget,
+                percentage: data.percentage,
+                totalInc: data.totals["+"],
+                totalExp: data.totals["-"]
+            }
         },
 
         testing: function () {
@@ -77,7 +113,7 @@ var UIController = (function () {
                 type: document.querySelector(DOMStrings.incomeButton).value,
                 name: document.querySelector(DOMStrings.incomeName).value,
                 description: document.querySelector(DOMStrings.incomeDesc).value,
-                amount: document.querySelector(DOMStrings.incomeAmount).value
+                amount: parseFloat(document.querySelector(DOMStrings.incomeAmount).value)
             }
         },
         getExpenseInput: function () {
@@ -85,7 +121,7 @@ var UIController = (function () {
                 type: document.querySelector(DOMStrings.expenseButton).value,
                 name: document.querySelector(DOMStrings.expenseName).value,
                 description: document.querySelector(DOMStrings.expenseDesc).value,
-                amount: document.querySelector(DOMStrings.expenseAmount).value
+                amount: parseFloat(document.querySelector(DOMStrings.expenseAmount).value)
             }
         },
 
@@ -149,18 +185,28 @@ var controller = (function (dataCtrl, UICtrl) {
 
     }
 
+    var updateBudget = function () {
+        // calc budget
+        dataCtrl.calculateTotal();
+
+        // return the budget
+        var budget = dataCtrl.getBudget();
+        console.log(budget)
+        // display budget 
+
+    }
+
     var ctrlAddItem = function (type) {
         var input, newItem;
 
         // get input data from fields
         if (type === "+") {
             input = UICtrl.getIncomeInput()
-            console.log(input)
         } else if (type === '-') {
             input = UICtrl.getExpenseInput();
-            console.log(input)
         }
 
+        // if (input.name !== "" && !isNaN(input.amount) && input.amount > 0) {
         // add item to data contorller
         newItem = dataCtrl.addItem(input.type, input.name, input.description, input.amount);
 
@@ -168,11 +214,9 @@ var controller = (function (dataCtrl, UICtrl) {
         UICtrl.addListItem(newItem, input.type);
         UICtrl.clearFields(input.type);
 
-        // calc budget
+        updateBudget();
+        // } else {}
 
-        // display budget 
-
-        // console.log('it works')
     }
 
     return {

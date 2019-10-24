@@ -12,6 +12,7 @@ TODOs:
 - create a init function
 - create income and expense function constructors in the data handling module
 
+- don't allow empty fields in the input of new bills or 0 as the amount (less 85.)
 
 issues:
 - adding event listener on enter press in my modal so it runs ctrlAddItem()
@@ -19,3 +20,4 @@ issues:
 
 Log in :
 - google log in apis
+
