@@ -1,14 +1,14 @@
 // DATA MODULE
 var dataController = (function () {
 
-    var Expense = function(id, name, description, amount) {
+    var Expense = function (id, name, description, amount) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.amount = amount;
     }
 
-    var Income = function(id, name, description, amount) {
+    var Income = function (id, name, description, amount) {
         this.id = id;
         this.name = name
         this.description = description;
@@ -19,7 +19,7 @@ var dataController = (function () {
         allItems: {
             '+': [],
             '-': []
-        }, 
+        },
         totals: {
             '+': 0,
             '-': 0
@@ -28,16 +28,16 @@ var dataController = (function () {
 
     // Allow other functions to add items 
     return {
-        addItem: function(type, name, desc, amount) {
+        addItem: function (type, name, desc, amount) {
             var newItem, ID;
 
-            if(data.allItems[type].length > 0 ){
+            if (data.allItems[type].length > 0) {
                 ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
             } else {
                 ID = 0;
             }
-            
-             
+
+
             if (type === '+') {
                 newItem = new Income(ID, name, desc, amount);
             } else if (type === '-') {
@@ -48,8 +48,8 @@ var dataController = (function () {
             return newItem;
         },
 
-        testing: function() {
-            console.log(data); 
+        testing: function () {
+            console.log(data);
         }
     }
 
@@ -67,7 +67,9 @@ var UIController = (function () {
         expenseButton: '#expense-button',
         expenseName: '#expense-name',
         expenseDesc: '#expense-description',
-        expenseAmount: '#expense-amount'
+        expenseAmount: '#expense-amount',
+        incomeContainer: ".income_container",
+        expensesContainer: ".expenses_container"
     }
     return {
         getIncomeInput: function () {
@@ -87,12 +89,24 @@ var UIController = (function () {
             }
         },
 
-        addListItem: function(obj, type) {
+        addListItem: function (obj, type) {
+            var html, newHTML, element;
             // create html string with placeholder text
-
+            if (type === '+') {
+                element = DOMStrings.incomeContainer;
+                html = '<tr id="income-%id%"><td class="income_name_row">%name%</td><td class="income_amount_row">%amount%</td><td class="income_description_row">%description%</td><td class="delete_edit_income"><a class="edit_income_button">Edit</a> | <a class="delete_income_button">Delete</a></td></tr> '
+            } else if (type === '-') {
+                element = DOMStrings.expensesContainer;
+                html = '<tr id="expense-%id%"><td class="expense_name_row">%name%</td><td class="expense_amount_row">%amount%</td><td class="expense_description_row">%description%</td><td class="delete_edit_expense"><a class="edit_expense_button">Edit</a> | <a class="delete_expense_button">Delete</a></td></tr>'
+            }
             //  replace the placeholder text with actual data
+            newHTML = html.replace('%id%', obj.id);
+            newHTML = newHTML.replace('%name%', obj.name);
+            newHTML = newHTML.replace('%amount%', obj.amount);
+            newHTML = newHTML.replace('%description%', obj.description);
 
             // insert html into the dom 
+            document.querySelector(element).insertAdjacentHTML('beforeend', newHTML);
         },
 
         getDOMStrings: function () {
@@ -115,7 +129,7 @@ var controller = (function (dataCtrl, UICtrl) {
             ctrlAddItem('-');
         });
 
-        
+
     }
 
     var ctrlAddItem = function (type) {
@@ -131,9 +145,10 @@ var controller = (function (dataCtrl, UICtrl) {
         }
 
         // add item to data contorller
-        newItem = dataCtrl.addItem(input.type, input.name, input.description, input.amount); 
+        newItem = dataCtrl.addItem(input.type, input.name, input.description, input.amount);
 
         // add new item to user interface 
+        UICtrl.addListItem(newItem, input.type);
         // calc budget
         // display budget 
 

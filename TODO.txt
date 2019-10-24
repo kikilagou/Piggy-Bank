@@ -18,9 +18,4 @@ issues:
 
 
 Log in :
-- there are services to do that for you
 - google log in apis
--
-
-but if you want to do it yourself
-- 
