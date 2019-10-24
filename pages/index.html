@@ -50,30 +50,79 @@
         <!--EXPENSES AND INCOMINGS INPUT PANEL -->
         <div class="row">
 
-            <!-- MODAL FOR INPUTING NEW DATA -->
-            <div class="modal" id="myModal">
+            <!-- MODAL FOR INPUTING NEW INCOME -->
+            <div class="modal" id="incomeModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
 
                         <!-- Modal Header -->
                         <div class="modal-header">
-                            <h4 class="modal-title">Modal Heading</h4>
+                            <h3 class="modal-title">Add new income</h3>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
 
                         <!-- Modal body -->
                         <div class="modal-body">
-                            Modal body..
+                            <div class="form-field">
+                                <label><b>Income name</b></label><br>
+                                <input type="text" name="name" value="" id="income-name" placeholder="Rent" list="incomings">
+                            </div>
+                            <div class="form-field">
+                                <label><b>Income description</b></label>
+                                <textarea name="description" cols="40" rows="3" id="income-description"
+                                    placeholder="Home, home on the range"></textarea> </div>
+                            <div class="form-field">
+                                <label><b>Amount(in £)</b></label><br>
+                                <input type="text" name="amount" value="" id="income-amount" placeholder="400">
+                            </div>
                         </div>
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <!-- <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Cancel</button> -->
+                            <button type="button" value="+" class="btn btn-success btn-block" id="income-button" data-dismiss="modal">Add</button>
                         </div>
 
                     </div>
                 </div>
             </div>
+
+            <!-- MODAL FOR INPUTING NEW EXPENSE -->
+            <div class="modal" id="expenseModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+    
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h3 class="modal-title">Add new expense</h3>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+    
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                <div class="form-field">
+                                    <label><b>Expense name</b></label><br>
+                                    <input type="text" name="name" value="" id="expense-name" placeholder="Rent" list="outgoings">
+                                </div>
+                                <div class="form-field">
+                                    <label><b>Expense description</b></label>
+                                    <textarea name="description" cols="40" rows="3" id="expense-description"
+                                        placeholder="Home, home on the range"></textarea> </div>
+                                <div class="form-field">
+                                    <label><b>Amount(in £)</b></label><br>
+                                    <input type="text" name="amount" value="" id="expense-amount" placeholder="400">
+                                </div>
+                            </div>
+    
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <!-- <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Cancel</button> -->
+                                <button type="button" value="-" class="btn btn-success btn-block" id="expense-button" data-dismiss="modal">Add</button>
+                            </div>
+    
+                        </div>
+                    </div>
+                </div>
 
 
             <!-- INCOME -->
@@ -81,7 +130,7 @@
                 <header class="head">
                     <div class="left">
                         <h2>Incomings</h2>
-                        <a id="new_income" data-toggle="modal" data-target="#myModal" href="#myModal" onclick='check()'>Add new
+                        <a id="new_income" data-toggle="modal" data-target="#incomeModal" href="#incomeModal">Add new
                             income</a>
                     </div>
                     <form class="right">
@@ -141,7 +190,8 @@
                 <header class="head">
                     <div class="left">
                         <h2>Outgoings</h2>
-                        <a id="new_expense"  data-toggle="modal" data-target="#myModal" href="#myModal" onclick='check()' >Add new expense</a>
+                        <a id="new_expense" data-toggle="modal" data-target="#expenseModal" href="#expenseModal">Add new
+                            expense</a>
                     </div>
                     <form class="right">
                         <labe><b>Sort by:</b></labe><br>
@@ -200,19 +250,8 @@
     </footer>
 
 
-    <script type='text/javascript'>
-        function check() {
-            if (document.getElementById('new_income')) {
-                var modal = document.getElementById('myModal');
-                document.querySelector('.modal-title').innerHTML = "Add a new income"
-            } else if (document.getElementById('new_expense')) {
-                var modal = document.getElementById('myModal');
-                document.querySelector('.modal-title').innerHTML = "New a new expense"
-                
-            }
-        }
-    </script>
-
+    <!-- My script -->
+    <script src="../scripts/script.js"></script>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

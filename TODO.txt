@@ -1,2 +1,26 @@
 1. when the screen is small remove the left margin and the right margins from the outgoings and the incomings
 
+Questions
+- should I make an api if I want to make my app usable by many users and add a database?
+
+
+
+TODOs:
+- set up the module pattern
+- set up event listners for adding a new bill - open the input modal
+- read input data from the modal 
+- create a init function
+- create income and expense function constructors in the data handling module
+
+
+issues:
+- adding event listener on enter press in my modal so it runs ctrlAddItem()
+
+
+Log in :
+- there are services to do that for you
+- google log in apis
+-
+
+but if you want to do it yourself
+- 
