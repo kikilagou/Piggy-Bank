@@ -109,6 +109,23 @@ var UIController = (function () {
             document.querySelector(element).insertAdjacentHTML('beforeend', newHTML);
         },
 
+        clearFields: function (type) {
+            var fields, fieldsArray;
+
+            if (type === '+') {
+                fields = document.querySelectorAll(DOMStrings.incomeName + ', ' + DOMStrings.incomeDesc + ', ' + DOMStrings.incomeAmount);
+            } else if (type === '-') {
+                fields = document.querySelectorAll(DOMStrings.expenseName + ', ' + DOMStrings.expenseDesc + ', ' + DOMStrings.expenseAmount);
+            }
+
+            fieldsArray = Array.prototype.slice.call(fields);
+            fieldsArray.forEach(element => {
+                element.value = "";
+            });
+
+            // fieldsArray[0].focus();
+        },
+
         getDOMStrings: function () {
             return DOMStrings;
         }
@@ -149,10 +166,12 @@ var controller = (function (dataCtrl, UICtrl) {
 
         // add new item to user interface 
         UICtrl.addListItem(newItem, input.type);
+        UICtrl.clearFields(input.type);
+
         // calc budget
+
         // display budget 
 
-        //test
         // console.log('it works')
     }
 
