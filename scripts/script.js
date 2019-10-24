@@ -105,7 +105,10 @@ var UIController = (function () {
         expenseDesc: '#expense-description',
         expenseAmount: '#expense-amount',
         incomeContainer: ".income_container",
-        expensesContainer: ".expenses_container"
+        expensesContainer: ".expenses_container",
+        monthlyTotal: '.monthly_total',
+        totalIncome: ".monthly_total_income",
+        totalExpense: ".monthly_total_expense"
     }
     return {
         getIncomeInput: function () {
@@ -162,6 +165,21 @@ var UIController = (function () {
             // fieldsArray[0].focus();
         },
 
+        displayBudget: function(obj) {
+
+            document.querySelector(DOMStrings.monthlyTotal).textContent = obj.budget;
+            document.querySelector(DOMStrings.totalIncome).textContent = obj.totalInc;
+            document.querySelector(DOMStrings.totalExpense).textContent = obj.totalExp;
+
+            if (obj.budget < 0) {
+                document.querySelector('.monthly_total').style.background = '#e54120';
+            } else if (obj.budget >0) {
+                document.querySelector('.monthly_total').style.background = '#579d1f';
+
+            }
+
+        },
+
         getDOMStrings: function () {
             return DOMStrings;
         }
@@ -191,9 +209,9 @@ var controller = (function (dataCtrl, UICtrl) {
 
         // return the budget
         var budget = dataCtrl.getBudget();
-        console.log(budget)
+        
         // display budget 
-
+        UICtrl.displayBudget(budget);
     }
 
     var ctrlAddItem = function (type) {

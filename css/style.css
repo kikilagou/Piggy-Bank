@@ -27,7 +27,7 @@ body {
 h1,
 h3 {
     font-weight: bold;
-    margin-bottom: 3rem;
+    /* margin-bottom: 3rem; */
 }
 
 h2 {
@@ -195,13 +195,23 @@ tfoot {
     margin-top: 2em;
 }
 
-.monthly_total {
+.monthly_total, .monthly_total_income{
     background-color: var(--safe);
     border-radius: 6px;
     padding-top: 3px;
     padding-bottom: 3px;
-    padding-right: 3px;
-    padding-left: 3px;
+    padding-right: 5px;
+    padding-left: 5px;
+    color: white;
+}
+
+.monthly_total_expense {
+    background-color: var(--red);
+    border-radius: 6px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-right: 5px;
+    padding-left: 5px;
     color: white;
 }
 
@@ -239,3 +249,34 @@ tfoot {
     border-radius: 6px;
     color: white;
 }
+
+/* .tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+  
+    /* Position the tooltip */
+    /* position: absolute;
+    z-index: 1;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  } */
+
+  .totals_overview {
+      /* border:1px solid var(--gray2);  */
+      padding-top: 2em; 
+      /* margin: 1em;  */
+      border-radius: 6px;"
+  }
