@@ -86,6 +86,15 @@ var UIController = (function () {
                 amount: document.querySelector(DOMStrings.expenseAmount).value
             }
         },
+
+        addListItem: function(obj, type) {
+            // create html string with placeholder text
+
+            //  replace the placeholder text with actual data
+
+            // insert html into the dom 
+        },
+
         getDOMStrings: function () {
             return DOMStrings;
         }
@@ -105,6 +114,8 @@ var controller = (function (dataCtrl, UICtrl) {
         document.querySelector(DOM.expenseButton).addEventListener('click', function () {
             ctrlAddItem('-');
         });
+
+        
     }
 
     var ctrlAddItem = function (type) {
