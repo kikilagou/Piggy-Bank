@@ -84,6 +84,13 @@ var dataController = (function () {
             }
         },
 
+        // getItems: function() {
+        //     return {
+        //         incomes: data.allItems["+"],
+        //         expenses: data.allItems["-"]
+        //     }
+        // },
+
         testing: function () {
             console.log(data);
         }
@@ -127,6 +134,12 @@ var UIController = (function () {
                 amount: parseFloat(document.querySelector(DOMStrings.expenseAmount).value)
             }
         },
+
+        // noIncomesOrExpenses: function() {
+        //     var html
+        //     // html_incomes = '<div class="landing tac"> <h2 class="mb2">No expenses to show</h2> <p class="mb0">You\'ve got no bills to pay at the moment. <a href="/bills/add">Add one</a> if you need to!</p></div>'
+        //     // document.querySelector('.items_lists_incomes').insertAdjacentHTML('beforeend', html_incomes);
+        // },
 
         addListItem: function (obj, type) {
             var html, newHTML, element;
@@ -241,6 +254,16 @@ var controller = (function (dataCtrl, UICtrl) {
         init: function () {
             console.log("App has started")
             setUpEventListeners();
+
+            // if(dataCtrl.getItems().incomes.length === 0) {
+            //     console.log("WE HAVE NOT INCOMES")
+            //     UICtrl.noIncomesOrExpenses();
+
+            // }
+
+            // if(dataCtrl.getItems().expenses.length === 0) {
+            //     console.log("WE HAVE NO EXPENSES")
+            // }
         }
     };
 
