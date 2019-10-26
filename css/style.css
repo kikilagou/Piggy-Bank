@@ -191,11 +191,11 @@ tfoot {
     margin-left: 1em;
 }
 
-.overview_section {
+.overview-section {
     margin-top: 2em;
 }
 
-.monthly_total, .monthly_total_income{
+.monthly-total, .monthly-total-income{
     background-color: var(--safe);
     border-radius: 6px;
     padding-top: 3px;
@@ -205,7 +205,7 @@ tfoot {
     color: white;
 }
 
-.monthly_total_expense {
+.monthly-total-expense {
     background-color: var(--red);
     border-radius: 6px;
     padding-top: 3px;
@@ -274,9 +274,22 @@ tfoot {
     visibility: visible;
   } */
 
-  .totals_overview {
+  .totals-overview {
       /* border:1px solid var(--gray2);  */
       padding-top: 2em; 
       /* margin: 1em;  */
       border-radius: 6px;"
+  }
+
+  .breakdown-section {
+    --itemColor: black;
+    width: 1.6715830875123%;
+  }
+
+  .input-panel {
+      margin-top: 2em;
+  }
+
+  .edit-delete {
+      color: blue;
   }

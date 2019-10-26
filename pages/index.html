@@ -20,7 +20,7 @@
 </head>
 
 <body class="wrap">
-    <div class="container-fluid">
+    <main class="container-fluid">
 
         <!-- Navbar -->
         <nav class="navbar navbar-expand">
@@ -34,30 +34,28 @@
                     <li><a href="#"><span class=""></span>Logout</a></li>
                 </ul>
             </div>
-        </nav>
-
-        <br>
+        </nav><br>
 
         <!-- Overview Panel -->
-        <div class="overview_section">
+        <section class="overview-section">
             <div>
-                <h1 class="text-center">You have <span class="monthly_total">£100</span> to spend.</h1>
+                <h1 class="text-center">You have <span class="monthly-total">£0</span> to spend.</h1>
             </div>
             <div class="row">
-                <div class="col totals_overview">
-                    <h4 class="text-center">Total Incomings: <span class="monthly_total_income">+ £100</span></h4>
+                <div class="col totals-overview">
+                    <h4 class="text-center">Total Incomings: <span class="monthly-total-income">+ £0</span></h4>
                 </div>
-                <div class="col totals_overview">
-                    <h4 class="text-center">Total Expenses: <span class="monthly_total_expense">- £100</span></h4>
+                <div class="col totals-overview">
+                    <h4 class="text-center">Total Expenses: <span class="monthly-total-expense">- £0</span></h4>
                 </div>
             </div>
 
-        </div>
+        </section>     
 
         <hr>
 
         <!--EXPENSES AND INCOMINGS INPUT PANEL -->
-        <div class="row">
+        <section class="row">
 
             <!-- MODAL FOR INPUTING NEW INCOME -->
             <div class="modal" id="incomeModal">
@@ -139,7 +137,7 @@
 
 
             <!-- INCOME -->
-            <div class="col incomes">
+            <section class="col incomes">
                 <header class="head">
                     <div class="left">
                         <h2>Incomings</h2>
@@ -167,7 +165,7 @@
                 </div> -->
 
                 <!-- paste incomes table here -->
-                                <!-- <div class="landing tac">
+                <!-- <div class="landing tac">
                         <h2 class="mb2">No expenses to show</h2>
                         <p class="mb0">You've got no bills to pay at the moment. <a href="/bills/add">Add one</a> if you
                             need to!</p>
@@ -175,48 +173,44 @@
 
 
 
-                                    <!-- <div class="landing tac">
+                <!-- <div class="landing tac">
                         <h2 class="mb2">No income to show</h2>
                         <p class="mb0">You've got no bills to pay at the moment. <a href="/bills/add">Add one</a> if you
                             need to!</p>
                     </div> -->
                 <div aria-hidden="true" class="breakdown flex">
-                        <!-- <div class="breakdown__section" style="
-                                        --itemColor: #000000;
-                                        width: 1.6715830875123%;
-                                    ">
-                        </div> -->
-                    </div>
-    
-                    <table class="table borderless" id="income_list">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th class="table_float_right">Amount</th>
-                                <th>Description</th>
-                                <th>Edit/Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody class="income_container">
-                            <!-- <tr id="income-0">
+                    <div class="breakdown-section">overview</div>
+                </div>
+
+                <table class="table borderless" id="income_list">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th class="table_float_right">Amount</th>
+                            <th>Description</th>
+                            <th>Edit/Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody class="income_container">
+                        <!-- <tr id="income-0">
                                 <td class="income_name_row">Rent</td>
                                 <td class="income_amount_row">1300</td>
                                 <td class="income_description_row">Rent</td>
                                 <td class="delete_edit_income"><a class="edit_income_button">Edit</a> | <a class="delete_income_button">Delete</a></td>
                             </tr> -->
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th class="table_float_right">Total</th>
-                                <td></td>
-                                <td colspan="2"></td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th class="table_float_right">Total</th>
+                            <td></td>
+                            <td colspan="2"></td>
+                        </tr>
+                    </tfoot>
+                </table>
 
 
 
-            </div>
+            </section>
 
             <!-- EXPENSES -->
             <div class="col expenses">
@@ -243,43 +237,39 @@
                 <!-- paste expenses table here -->
 
 
-                    
-                
+
+
                 <div aria-hidden="true" class="breakdown flex">
-                        <!-- <div class="breakdown__section" style="
-                                            --itemColor: #000000;
-                                            width: 83.579154375615%;
-                                        ">
-                                <span class="breakdown__item-name"></span></div> -->
-                    </div>
-                    <table class="table" id="expenses_list">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Amount</th>
-                                <th>Description</th>
-                                <th>Edit/Delete</th>
-                            </tr>
-                        </thead>
-                        <tbody class="expenses_container">
-                            <!-- <tr id="expense-0">
+                    <div class="breakdown-section">overview</div>
+                </div>
+                <table class="table" id="expenses_list">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                            <th>Edit/Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody class="expenses_container">
+                        <!-- <tr id="expense-0">
                                 <td class="expense_name_row">Rent</td>
                                 <td class="expense_amount_row">1300</td>
                                 <td class="expense_description_row">Rent</td>
                                 <td class="delete_edit_expense"><a class="edit_expense_button">Edit</a> | <a class="delete_expense_button">Delete</a></td>
                             </tr> -->
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Total</th>
-                                <td></td>
-                                <td colspan="2"></td>
-                            </tr>
-                        </tfoot>
-                    </table>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Total</th>
+                            <td></td>
+                            <td colspan="2"></td>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
 
     <footer>
     </footer>

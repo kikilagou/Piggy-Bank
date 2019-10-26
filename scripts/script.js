@@ -47,7 +47,6 @@ var dataController = (function () {
                 ID = 0;
             }
 
-
             if (type === '+') {
                 newItem = new Income(ID, name, desc, amount);
             } else if (type === '-') {
@@ -113,9 +112,9 @@ var UIController = (function () {
         expenseAmount: '#expense-amount',
         incomeContainer: ".income_container",
         expensesContainer: ".expenses_container",
-        monthlyTotal: '.monthly_total',
-        totalIncome: ".monthly_total_income",
-        totalExpense: ".monthly_total_expense"
+        monthlyTotal: '.monthly-total',
+        totalIncome: ".monthly-total-income",
+        totalExpense: ".monthly-total-expense"
     }
     return {
         getIncomeInput: function () {
@@ -146,16 +145,19 @@ var UIController = (function () {
             // create html string with placeholder text
             if (type === '+') {
                 element = DOMStrings.incomeContainer;
-                html = '<tr id="income-%id%"><td class="income_name_row">%name%</td><td class="income_amount_row">%amount%</td><td class="income_description_row">%description%</td><td class="delete_edit_income"><a class="edit_income_button">Edit</a> | <a class="delete_income_button">Delete</a></td></tr> '
+                html = '<tr id="income-%id%"><td class="income_name_row">%name%</td><td class="income_amount_row">%amount%</td><td class="income_description_row">%description%</td><td class="delete_edit_income"><a class="edit-delete" id="edit_income_%editid%">Edit</a> | <a class="edit-delete" id="delete_income_%delid%">Delete</a></td></tr> '
             } else if (type === '-') {
                 element = DOMStrings.expensesContainer;
-                html = '<tr id="expense-%id%"><td class="expense_name_row">%name%</td><td class="expense_amount_row">%amount%</td><td class="expense_description_row">%description%</td><td class="delete_edit_expense"><a class="edit_expense_button">Edit</a> | <a class="delete_expense_button">Delete</a></td></tr>'
+                html = '<tr id="expense-%id%"><td class="expense_name_row">%name%</td><td class="expense_amount_row">%amount%</td><td class="expense_description_row">%description%</td><td class="delete_edit_expense"><a class="edit-delete" id="edit_expense_%editid%"">Edit</a> | <a class="edit-delete" id="delete_expense_%delid%"">Delete</a></td></tr>'
             }
             //  replace the placeholder text with actual data
             newHTML = html.replace('%id%', obj.id);
             newHTML = newHTML.replace('%name%', obj.name);
             newHTML = newHTML.replace('%amount%', obj.amount);
             newHTML = newHTML.replace('%description%', obj.description);
+            newHTML = newHTML.replace('%editid%', obj.id);
+            newHTML = newHTML.replace('%delid%', obj.id);
+
 
             // insert html into the dom 
             document.querySelector(element).insertAdjacentHTML('beforeend', newHTML);
@@ -185,9 +187,9 @@ var UIController = (function () {
             document.querySelector(DOMStrings.totalExpense).textContent = obj.totalExp;
 
             if (obj.budget < 0) {
-                document.querySelector('.monthly_total').style.background = '#e54120';
+                document.querySelector('.monthly-total').style.background = '#e54120';
             } else if (obj.budget >0) {
-                document.querySelector('.monthly_total').style.background = '#579d1f';
+                document.querySelector('.monthly-total').style.background = '#579d1f';
 
             }
 
@@ -212,8 +214,6 @@ var controller = (function (dataCtrl, UICtrl) {
         document.querySelector(DOM.expenseButton).addEventListener('click', function () {
             ctrlAddItem('-');
         });
-
-
     }
 
     var updateBudget = function () {
@@ -226,6 +226,7 @@ var controller = (function (dataCtrl, UICtrl) {
         // display budget 
         UICtrl.displayBudget(budget);
     }
+
 
     var ctrlAddItem = function (type) {
         var input, newItem;
@@ -249,6 +250,7 @@ var controller = (function (dataCtrl, UICtrl) {
         // } else {}
 
     }
+
 
     return {
         init: function () {
