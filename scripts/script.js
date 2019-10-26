@@ -117,7 +117,7 @@ var UIController = (function () {
                 totalExpense: ".monthly-total-expense"
             }
 
-            var sortTableRows = function (table) {
+            var sortTableRowsAlpha = function (table) {
                 // credit for this function: https://www.geeksforgeeks.org/how-to-sort-rows-in-a-table-using-javascript/
                 var i, x, y;
                 var switching = true;
@@ -137,6 +137,74 @@ var UIController = (function () {
 
                         // Check if 2 rows need to be switched 
                         if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+
+                            // If yes, mark Switch as needed and break loop 
+                            Switch = true;
+                            break;
+                        }
+                    }
+                    if (Switch) {
+                        // Function to switch rows and mark switch as completed 
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                    }
+                }
+            }
+
+            var sortTableRowsHighLow = function (table) {
+                // credit for this function: https://www.geeksforgeeks.org/how-to-sort-rows-in-a-table-using-javascript/
+                var i, x, y;
+                var switching = true;
+
+                // Run loop until no switching is needed 
+                while (switching) {
+                    switching = false;
+                    var rows = table.rows;
+
+                    // Loop to go through all rows 
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        var Switch = false;
+
+                        // Fetch 2 elements that need to be compared 
+                        x = rows[i].getElementsByTagName("TD")[1];
+                        y = rows[i + 1].getElementsByTagName("TD")[1];
+
+                        // Check if 2 rows need to be switched 
+                        if (x.innerHTML < y.innerHTML) {
+
+                            // If yes, mark Switch as needed and break loop 
+                            Switch = true;
+                            break;
+                        }
+                    }
+                    if (Switch) {
+                        // Function to switch rows and mark switch as completed 
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                    }
+                }
+            }
+
+            var sortTableRowsLowHigh = function (table) {
+                // credit for this function: https://www.geeksforgeeks.org/how-to-sort-rows-in-a-table-using-javascript/
+                var i, x, y;
+                var switching = true;
+
+                // Run loop until no switching is needed 
+                while (switching) {
+                    switching = false;
+                    var rows = table.rows;
+
+                    // Loop to go through all rows 
+                    for (i = 1; i < (rows.length - 1); i++) {
+                        var Switch = false;
+
+                        // Fetch 2 elements that need to be compared 
+                        x = rows[i].getElementsByTagName("TD")[1];
+                        y = rows[i + 1].getElementsByTagName("TD")[1];
+
+                        // Check if 2 rows need to be switched 
+                        if (x.innerHTML > y.innerHTML) {
 
                             // If yes, mark Switch as needed and break loop 
                             Switch = true;
@@ -201,14 +269,13 @@ var UIController = (function () {
                         var table = document.getElementById('income_list');
                         if (order === "lowhigh") {
                             console.log("ordering items low to high");
-                            sortTableRows(table);
+                            sortTableRowsLowHigh(table);
                         } else if (order === "highlow") {
                             console.log("ordering items high to low");
-                            sortTableRows(table);
+                            sortTableRowsHighLow(table);
                         } else if (order === "alpha") {
                             console.log("ordering items alphabetical order");
-                            sortTableRows(table);
-
+                            sortTableRowsAlpha(table);
                         }
                     },
 
@@ -276,9 +343,11 @@ var UIController = (function () {
                         UICtrl.orderListItems("highlow")
                     } else if (event.target.value === "low-high") {
                         console.log("low to high");
+                        UICtrl.orderListItems("lowhigh")
                         // UICtrl.orderListItems(document.getElementById('income_list'), "lowhigh")
                     } else if (event.target.value === "alphabetically") {
                         console.log("alpha");
+                        UICtrl.orderListItems("alpha")
                         // UICtrl.orderListItems(document.getElementById('income_list'), "alpha")
                     }
                 }, false);
