@@ -64,6 +64,13 @@ select {
     appearance: none;
     /* Remove default arrow */
 }
+/* 
+table tr {
+    border-top: 2px solid black;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+
+} */
 
 
 
@@ -89,23 +96,30 @@ select {
     border: 1px solid black'
 } */
 
-.table>tbody>tr>td,
+/* .table>tbody>tr>td,
 .table>tbody>tr>th,
 .table>tfoot>tr>td,
 .table>tfoot>tr>th,
 .table>thead>tr>td,
 .table>thead>tr>th {
     border: 0
-}
+} */
 
-.breakdown {
-    margin-top: 3em;
-    background-color: gray;
-    border-top-right-radius: 5px;
-    border-top-left-radius: 5px;
-}
+/* .table>tbody>tr>td,
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+    border: 0
+} 
 
-table {
+.table>thead>tr>th {
+    border: 0
+} */
+
+
+/* table {
 
     border-top: 1px solid gray;
     border-left: 1px solid gray;
@@ -114,9 +128,9 @@ table {
     border-collapse: separate;
     border-spacing: 2px;
     border-color: grey;
-}
+} */
 
-thead {
+/* thead {
     display: table-header-group;
     vertical-align: middle;
 }
@@ -124,11 +138,24 @@ thead {
 tbody {
     display: table-row-group;
     vertical-align: middle;
-}
+} */
 
-tfoot {
+/* tfoot {
     display: table-footer-group;
     vertical-align: middle;
+} */
+
+
+
+
+
+
+
+.breakdown {
+    margin-top: 3em;
+    background-color: gray;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
 }
 
 .navbar {
