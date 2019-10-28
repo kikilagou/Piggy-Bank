@@ -61,15 +61,15 @@ var dataController = (function () {
             var ids, index;
 
             // find out the index of the id we want to remove in our items array 
-            var ids = data.allItems[type].map(function(current) {
+            var ids = data.allItems[type].map(function (current) {
                 return current.id;
             });
 
-            index = ids.indexOf(id); 
-s
+            index = ids.indexOf(id);
+
             // delete the item from the data structure 
-            if(index !== -1) {
-                 data.allItems[type].splice(index, 1);
+            if (index !== -1) {
+                data.allItems[type].splice(index, 1);
             }
 
         },
@@ -216,6 +216,10 @@ var UIController = (function () {
             document.querySelector(element).insertAdjacentHTML('beforeend', newHTML);
         },
 
+        deleteListItem: function (rowID) {
+            var row = document.getElementById(rowID);
+            row.parentNode.removeChild(row);
+        },
 
         orderListItems: function (order, list) {
             var in_table = document.getElementById("income_list");
@@ -337,24 +341,26 @@ var controller = (function (dataCtrl, UICtrl) {
         var itemID, splitID, type, id;
 
         itemID = event.target.parentNode.parentNode.id;
-
+        console.log(itemID);
         if (itemID) {
             splitID = itemID.split('-');
             type = splitID[0];
             id = parseInt(splitID[1]);
 
-            if(type === "income") {
+            if (type === "income") {
                 type = '+';
-            } else if(type === "expense") {
-                type ='-';
+            } else if (type === "expense") {
+                type = '-';
             }
-             
+
             // delete the item from the data structure
             dataCtrl.deleteItem(type, id);
-        
+
             // delete item from UI
+            UICtrl.deleteListItem(itemID);
 
             // update totals
+            updateBudget();
         }
     }
 
