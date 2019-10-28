@@ -305,7 +305,7 @@ tbody {
       /* border:1px solid var(--gray2);  */
       padding-top: 2em; 
       /* margin: 1em;  */
-      border-radius: 6px;"
+      border-radius: 6px;
   }
 
   .breakdown-section {
@@ -317,6 +317,7 @@ tbody {
       margin-top: 2em;
   }
 
-  .edit-delete {
-      color: blue;
+  a.edit, a.delete:hover {
+    cursor: pointer;
   }
+

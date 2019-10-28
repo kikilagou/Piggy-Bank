@@ -170,7 +170,7 @@ var UIController = (function () {
         }
     }
 
-    var formatNumber = function(num, type) {
+    var formatNumber = function (num, type) {
         // +  or - infront of numbers 
         // exactly 2 decimal points
         num = Math.abs(num);
@@ -180,7 +180,7 @@ var UIController = (function () {
         int = numSplit[0];
         dec = numSplit[1];
 
-        return (type === 'expense' ? '-' : '+') + ' ' +  int + '.' + dec; 
+        return (type === 'expense' ? '-' : '+') + ' ' + int + '.' + dec;
     }
 
 
@@ -213,18 +213,16 @@ var UIController = (function () {
             // create html string with placeholder text
             if (type === '+') {
                 element = DOMStrings.incomeContainer;
-                html = '<tr id="income-%id%"><td class="income_name_row">%name%</td><td class="income_amount_row">%amount%</td><td class="income_description_row">%description%</td><td class="delete_edit_income"><a class="edit-delete" id="edit_income_%editid%">Edit</a> | <a class="edit-delete" id="delete_income_%delid%">Delete</a></td></tr> '
+                html = '<tr id="income-%id%"><td class="income_name_row">%name%</td><td class="income_amount_row">%amount%</td><td class="income_description_row">%description%</td><td class="delete_edit_income"><a class="edit" style="text-decoration: underline">Edit</a> | <a class="delete" style="text-decoration: underline;">Delete</a></td></tr>'
             } else if (type === '-') {
                 element = DOMStrings.expensesContainer;
-                html = '<tr id="expense-%id%"><td class="expense_name_row">%name%</td><td class="expense_amount_row">%amount%</td><td class="expense_description_row">%description%</td><td class="delete_edit_expense"><a class="edit-delete" id="edit_expense_%editid%"">Edit</a> | <a class="edit-delete" id="delete_expense_%delid%"">Delete</a></td></tr>'
+                html = '<tr id="expense-%id%"><td class="expense_name_row">%name%</td><td class="expense_amount_row">%amount%</td><td class="expense_description_row">%description%</td><td class="delete_edit_expense"><a class="edit" style="text-decoration: underline">Edit</a> | <a class="delete" style="text-decoration: underline">Delete</a></td></tr>'
             }
             //  replace the placeholder text with actual data
             newHTML = html.replace('%id%', obj.id);
             newHTML = newHTML.replace('%name%', obj.name);
             newHTML = newHTML.replace('%amount%', formatNumber(obj.amount, type));
             newHTML = newHTML.replace('%description%', obj.description);
-            newHTML = newHTML.replace('%editid%', obj.id);
-            newHTML = newHTML.replace('%delid%', obj.id);
 
             // insert html into the dom 
             document.querySelector(element).insertAdjacentHTML('beforeend', newHTML);
@@ -358,25 +356,28 @@ var controller = (function (dataCtrl, UICtrl) {
 
         itemID = event.target.parentNode.parentNode.id;
         console.log(itemID);
-        if (itemID) {
-            splitID = itemID.split('-');
-            type = splitID[0];
-            id = parseInt(splitID[1]);
+        // console.log(event.target.className);
 
-            if (type === "income") {
-                type = '+';
-            } else if (type === "expense") {
-                type = '-';
+        if (itemID) {
+            if (event.target.className === 'delete') {
+                splitID = itemID.split('-');
+                type = splitID[0];
+                id = parseInt(splitID[1]);
+
+                if (type === "income") {
+                    type = '+';
+                } else if (type === "expense") {
+                    type = '-';
+                }
+
+                dataCtrl.deleteItem(type, id);
+                UICtrl.deleteListItem(itemID);
+                updateBudget();
+
+            } else if (event.target.className === 'edit') {
+                console.log('lets edit this shit');
             }
 
-            // delete the item from the data structure
-            dataCtrl.deleteItem(type, id);
-
-            // delete item from UI
-            UICtrl.deleteListItem(itemID);
-
-            // update totals
-            updateBudget();
         }
     }
 
