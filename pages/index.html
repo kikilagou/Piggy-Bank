@@ -39,14 +39,14 @@
         <!-- Overview Panel -->
         <section class="overview-section">
             <div>
-                <h1 class="text-center">You have <span class="monthly-total">£0</span> to spend.</h1>
+                <h1 class="text-center">You have <span class="monthly-total"> </span> to spend.</h1>
             </div>
             <div class="row">
                 <div class="col totals-overview">
-                    <h4 class="text-center">Total Incomings: <span class="monthly-total-income">+ £0</span></h4>
+                    <h4 class="text-center">Total Incomings: <span class="monthly-total-income"> </span></h4>
                 </div>
                 <div class="col totals-overview">
-                    <h4 class="text-center">Total Expenses: <span class="monthly-total-expense">- £0</span></h4>
+                    <h4 class="text-center">Total Expenses: <span class="monthly-total-expense"> </span></h4>
                 </div>
             </div>
 
@@ -55,7 +55,7 @@
         <hr>
 
         <!--EXPENSES AND INCOMINGS INPUT PANEL -->
-        <section class="row">
+        <section class="row main-row">
 
             <!-- MODAL FOR INPUTING NEW INCOME -->
             <div class="modal" id="incomeModal">
@@ -233,7 +233,7 @@
             </section>
 
             <!-- EXPENSES -->
-            <div class="col expenses">
+            <section class="col expenses">
                 <header class="head">
                     <div class="left">
                         <h2>Outgoings</h2>
@@ -242,10 +242,10 @@
                     </div>
                     <form class="right">
                         <labe><b>Sort by:</b></labe><br>
-                        <select>
-                            <option>Highest to lowest cost</option>
-                            <option>Lowest to highest cost</option>
-                            <option>Alphabetically</option>
+                        <select id="expenses-select">
+                            <option value="high-low">Highest to lowest cost</option>
+                            <option value="low-high">Lowest to highest cost</option>
+                            <option value="alphabetically">Alphabetically</option>
                         </select>
                     </form>
                 </header>
@@ -287,7 +287,7 @@
                         </tr>
                     </tfoot>
                 </table>
-            </div>
+            </section>
         </section>
     </main>
 
