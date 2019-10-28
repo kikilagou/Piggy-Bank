@@ -57,6 +57,23 @@ var dataController = (function () {
             return newItem;
         },
 
+        deleteItem: function (type, id) {
+            var ids, index;
+
+            // find out the index of the id we want to remove in our items array 
+            var ids = data.allItems[type].map(function(current) {
+                return current.id;
+            });
+
+            index = ids.indexOf(id); 
+s
+            // delete the item from the data structure 
+            if(index !== -1) {
+                 data.allItems[type].splice(index, 1);
+            }
+
+        },
+
         calculateTotal: function () {
             // calculate total income and expenses 
             calculateTotal('+');
@@ -83,19 +100,10 @@ var dataController = (function () {
             }
         },
 
-        // getItems: function() {
-        //     return {
-        //         incomes: data.allItems["+"],
-        //         expenses: data.allItems["-"]
-        //     }
-        // },
-
         testing: function () {
             console.log(data);
         }
     }
-
-
 })();
 
 // UI MODULE
@@ -137,17 +145,17 @@ var UIController = (function () {
                 y = rows[i + 1].getElementsByTagName("TD");
 
                 // Check if 2 rows need to be switched 
-                if (order === "lh") {
+                if (order === "low-high") {
                     if (x[1].innerHTML > y[1].innerHTML) {
                         Switch = true;
                         break;
                     }
-                } else if (order === "hl") {
+                } else if (order === "high-low") {
                     if (x[1].innerHTML < y[1].innerHTML) {
                         Switch = true;
                         break;
                     }
-                } else if (order === "a") {
+                } else if (order === "alphabetically") {
                     if (x[0].innerHTML.toLowerCase() > y[0].innerHTML.toLowerCase()) {
                         Switch = true;
                         break;
@@ -159,19 +167,6 @@ var UIController = (function () {
                 rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                 switching = true;
             }
-        }
-    }
-
-    var sort = function (order, table) {
-        if (order === "lowhigh") {
-            console.log("ordering items low to high");
-            sortTableRows(table, "lh");
-        } else if (order === "highlow") {
-            console.log("ordering items high to low");
-            sortTableRows(table, "hl");
-        } else if (order === "alpha") {
-            console.log("ordering items alphabetical order");
-            sortTableRows(table, "a");
         }
     }
 
@@ -221,14 +216,15 @@ var UIController = (function () {
             document.querySelector(element).insertAdjacentHTML('beforeend', newHTML);
         },
 
+
         orderListItems: function (order, list) {
             var in_table = document.getElementById("income_list");
             var ex_table = document.getElementById("expenses_list");
 
             if (list === 'i') {
-                sort(order, in_table);
+                sortTableRows(in_table, order);
             } else if (list === 'e') {
-                sort(order, ex_table);
+                sortTableRows(ex_table, order);
             }
         },
 
@@ -289,16 +285,8 @@ var controller = (function (dataCtrl, UICtrl) {
             if (event.target.id !== 'income-select') return;
 
             // console.log(event.target.value);
-            if (event.target.value === "high-low") {
-                console.log("high to low");
-                UICtrl.orderListItems("highlow", "i")
-            } else if (event.target.value === "low-high") {
-                console.log("low to high");
-                UICtrl.orderListItems("lowhigh", "i")
-            } else if (event.target.value === "alphabetically") {
-                console.log("alpha");
-                UICtrl.orderListItems("alpha", "i")
-            }
+            UICtrl.orderListItems(event.target.value, 'i');
+
         }, false);
 
         document.querySelector('.expenses').addEventListener('input', function (event) {
@@ -306,17 +294,7 @@ var controller = (function (dataCtrl, UICtrl) {
             // Only run on our select menu
             if (event.target.id !== 'expenses-select') return;
 
-            // console.log(event.target.value);
-            if (event.target.value === "high-low") {
-                console.log("high to low");
-                UICtrl.orderListItems("highlow", "e")
-            } else if (event.target.value === "low-high") {
-                console.log("low to high");
-                UICtrl.orderListItems("lowhigh", "e")
-            } else if (event.target.value === "alphabetically") {
-                console.log("alpha");
-                UICtrl.orderListItems("alpha", "e")
-            }
+            UICtrl.orderListItems(event.target.value, 'e');
         }, false);
 
 
@@ -351,20 +329,38 @@ var controller = (function (dataCtrl, UICtrl) {
         // add new item to user interface 
         UICtrl.addListItem(newItem, input.type);
         UICtrl.clearFields(input.type);
-
         updateBudget();
         // } else {}
-
     }
 
-    var ctrlDeleteItem = function(event) {
-        console.log(event.target.parentNode.parentNode);
-    }
+    var ctrlDeleteItem = function (event) {
+        var itemID, splitID, type, id;
 
+        itemID = event.target.parentNode.parentNode.id;
+
+        if (itemID) {
+            splitID = itemID.split('-');
+            type = splitID[0];
+            id = parseInt(splitID[1]);
+
+            if(type === "income") {
+                type = '+';
+            } else if(type === "expense") {
+                type ='-';
+            }
+             
+            // delete the item from the data structure
+            dataCtrl.deleteItem(type, id);
+        
+            // delete item from UI
+
+            // update totals
+        }
+    }
 
     return {
         init: function () {
-            console.log("App has started")
+            console.log("App started!")
             UICtrl.displayBudget({
                 budget: 0,
                 percentage: 0,
@@ -385,7 +381,6 @@ var controller = (function (dataCtrl, UICtrl) {
             // }
         }
     };
-
 })(dataController, UIController);
 
 controller.init();
