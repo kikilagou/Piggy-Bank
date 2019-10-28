@@ -170,6 +170,20 @@ var UIController = (function () {
         }
     }
 
+    var formatNumber = function(num, type) {
+        // +  or - infront of numbers 
+        // exactly 2 decimal points
+        num = Math.abs(num);
+        num = num.toFixed(2);
+
+        numSplit = num.split('.');
+        int = numSplit[0];
+        dec = numSplit[1];
+
+        return (type === 'expense' ? '-' : '+') + ' ' +  int + '.' + dec; 
+    }
+
+
     return {
         getIncomeInput: function () {
             return {
@@ -207,7 +221,7 @@ var UIController = (function () {
             //  replace the placeholder text with actual data
             newHTML = html.replace('%id%', obj.id);
             newHTML = newHTML.replace('%name%', obj.name);
-            newHTML = newHTML.replace('%amount%', obj.amount);
+            newHTML = newHTML.replace('%amount%', formatNumber(obj.amount, type));
             newHTML = newHTML.replace('%description%', obj.description);
             newHTML = newHTML.replace('%editid%', obj.id);
             newHTML = newHTML.replace('%delid%', obj.id);
@@ -250,10 +264,12 @@ var UIController = (function () {
         },
 
         displayBudget: function (obj) {
+            var type;
+            obj.budget > 0 ? type = 'income' : type = 'expense';
 
-            document.querySelector(DOMStrings.monthlyTotal).textContent = obj.budget;
-            document.querySelector(DOMStrings.totalIncome).textContent = obj.totalInc;
-            document.querySelector(DOMStrings.totalExpense).textContent = obj.totalExp;
+            document.querySelector(DOMStrings.monthlyTotal).textContent = formatNumber(obj.budget, type);
+            document.querySelector(DOMStrings.totalIncome).textContent = formatNumber(obj.totalInc, 'income');
+            document.querySelector(DOMStrings.totalExpense).textContent = formatNumber(obj.totalExp, 'expense');
 
             if (obj.budget < 0) {
                 document.querySelector('.monthly-total').style.background = '#e54120';
