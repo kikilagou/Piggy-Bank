@@ -74,7 +74,7 @@ var dataController = (function () {
 
         },
 
-        editItem: function(id, type, name, desc, amount) {
+        editItem: function (id, type, name, desc, amount) {
             var ids, index;
 
             var ids = data.allItems[type].map(function (current) {
@@ -190,15 +190,16 @@ var UIController = (function () {
     var formatNumber = function (num, type) {
         // +  or - infront of numbers 
         // exactly 2 decimal points
-        num = Math.abs(num);
-        num = num.toFixed(2);
+        // num = Math.abs(num);
+        // num = num.toFixed(2);
 
-        numSplit = num.split('.');
-        int = numSplit[0];
-        dec = numSplit[1];
+        // numSplit = num.split('.');
+        // int = numSplit[0];
+        // dec = numSplit[1];
 
-        // (type === 'expense' ? '-' : '+') + ' ' + 
-        return int + '.' + dec;
+        // // (type === 'expense' ? '-' : '+') + ' ' + 
+        // return int + '.' + dec;
+        return num;
     }
 
 
@@ -251,9 +252,9 @@ var UIController = (function () {
             row.parentNode.removeChild(row);
         },
 
-        eidtListItem: function(rowID) {
+        eidtListItem: function (rowID) {
             var row = document.getElementById(rowID);
-            row.refresh ();
+            row.refresh();
         },
 
         orderListItems: function (order, list) {
@@ -270,18 +271,49 @@ var UIController = (function () {
         clearFields: function (type) {
             var fields, fieldsArray;
 
+
             if (type === '+') {
                 fields = document.querySelectorAll(DOMStrings.incomeName + ', ' + DOMStrings.incomeDesc + ', ' + DOMStrings.incomeAmount);
+                var modal = document.getElementById('incomeModal');
             } else if (type === '-') {
                 fields = document.querySelectorAll(DOMStrings.expenseName + ', ' + DOMStrings.expenseDesc + ', ' + DOMStrings.expenseAmount);
+                var modal = document.getElementById('expenseModal');
             }
 
             fieldsArray = Array.prototype.slice.call(fields);
+            // clear the fields
             fieldsArray.forEach(element => {
                 element.value = "";
             });
 
-            // fieldsArray[0].focus();
+            // get rid of the modal
+            modal.classList.remove('show');
+            modal.setAttribute('aria-hidden', 'true');
+            modal.setAttribute('style', 'display: none');
+            var modalBackdrops = document.getElementsByClassName('modal-backdrop');
+            document.body.removeChild(modalBackdrops[0]);
+        },
+
+        checkEmptyFields: function (type) {
+            var fieldsArray;
+            if (type === '+') {
+                fields = document.querySelectorAll(DOMStrings.incomeName + ', ' + DOMStrings.incomeAmount);
+            } else if (type === '-') {
+                fields = document.querySelectorAll(DOMStrings.expenseName + ', ' + DOMStrings.expenseAmount);
+            }
+
+            fieldsArray = Array.prototype.slice.call(fields);
+
+            // if the fields are filled then do this
+            if (fieldsArray[0].trim == "" || fieldsArray[1].trim == "" || isNaN(fieldsArray[0]) || isNaN(fieldsArray[1])) {
+                fieldsArray[0].innerHTML = "Must fill in"
+                fieldsArray[1].innerHTML = "Must fill in"
+                console.log("NOOOOO");
+                return false;
+            } else {
+                return true;
+            }
+
         },
 
         displayBudget: function (obj) {
@@ -307,16 +339,51 @@ var UIController = (function () {
 
 // CONTROLLER MODULE
 var controller = (function (dataCtrl, UICtrl) {
+    var DOM = UICtrl.getDOMStrings();
 
     var setUpEventListeners = function () {
-        var DOM = UICtrl.getDOMStrings();
 
-        document.querySelector(DOM.incomeButton).addEventListener('click', function () {
+        document.querySelector(DOM.incomeButton).addEventListener('click', function (e) {
+            // if(UICtrl.checkEmptyFields('+')) {
+            //     ctrlAddItem('+');
+
+            // } else {
+            //     e.preventDefault();
+            // }
             ctrlAddItem('+');
         });
+
         document.querySelector(DOM.expenseButton).addEventListener('click', function () {
             ctrlAddItem('-');
         });
+
+        document.querySelector(DOM.incomeButton).addEventListener('keypress', function () {
+            if (event.key === 13 || event.which === 13) {
+                ctrlAddItem('+');
+            }
+        });
+
+        document.querySelector(DOM.expenseButton).addEventListener('keypress', function () {
+            if (event.key === 13 || event.which === 13) {
+                ctrlAddItem('-');
+
+            }
+        });
+
+        
+        // document.querySelector("#form1").addEventListener('keypress', function () {
+        //     if (event.key === 13 || event.which === 13) {
+        //         ctrlAddItem('+');
+
+        //     }
+        // });
+
+        // document.querySelector("#form2").addEventListener('keypress', function () {
+        //     if (event.key === 13 || event.which === 13) {
+        //         ctrlAddItem('-');
+
+        //     }
+        // });
 
         document.querySelector('.main-row').addEventListener('click', ctrlDeleteItem);
 
@@ -359,7 +426,6 @@ var controller = (function (dataCtrl, UICtrl) {
         // add item to data contorller
         newItem = dataCtrl.addItem(input.type, input.name, input.description, input.amount);
 
-        // add new item to user interface 
         UICtrl.addListItem(newItem, input.type);
         UICtrl.clearFields(input.type);
         updateBudget();
@@ -396,14 +462,19 @@ var controller = (function (dataCtrl, UICtrl) {
         }
     }
 
-    var ctrlEditItem = function(event) {
+    var ctrlEditItem = function (event) {
         // grab the stuff from the modal and pass it to the data edit item method 
         // call the ui edit itel method to refresh
     }
 
     return {
         init: function () {
+            if (window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.href);
+            }
+
             console.log("App started!")
+
             UICtrl.displayBudget({
                 budget: 0,
                 percentage: 0,

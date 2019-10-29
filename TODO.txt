@@ -31,3 +31,8 @@ TODO:
     - get the data form the modal and pass it to the edit method in the controller whihc passes it to the data module and the UI
     - in the edit modals set the text to be the current item's values for name description and amount then the user can change them if they want by deleting them so get the parent element of the edit button? and grab the info like that?
 - add placeholder for when there are no bills to show
+- don't allow non numbers and strings in the amount fields
+- don't allow empty fields 
+- add items to the table is highest to lower cost order or add option in the select that is inputted order
+
+https://stackoverflow.com/questions/34240728/how-to-display-html-required-before-calling-bootstrap-modal
