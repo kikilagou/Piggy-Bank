@@ -370,21 +370,6 @@ var controller = (function (dataCtrl, UICtrl) {
             }
         });
 
-        
-        // document.querySelector("#form1").addEventListener('keypress', function () {
-        //     if (event.key === 13 || event.which === 13) {
-        //         ctrlAddItem('+');
-
-        //     }
-        // });
-
-        // document.querySelector("#form2").addEventListener('keypress', function () {
-        //     if (event.key === 13 || event.which === 13) {
-        //         ctrlAddItem('-');
-
-        //     }
-        // });
-
         document.querySelector('.main-row').addEventListener('click', ctrlDeleteItem);
 
         document.querySelector('.incomes').addEventListener('input', function (event) {
