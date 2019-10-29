@@ -74,6 +74,23 @@ var dataController = (function () {
 
         },
 
+        editItem: function(id, type, name, desc, amount) {
+            var ids, index;
+
+            var ids = data.allItems[type].map(function (current) {
+                return current.id;
+            });
+
+            index = ids.indexOf(id);
+
+            // edit what we want to edit
+            if (index !== -1) {
+                data.allItems[type].name = name;
+                data.allItems[type].description = desc;
+                data.allItems[type].amount = amount;
+            }
+        },
+
         calculateTotal: function () {
             // calculate total income and expenses 
             calculateTotal('+');
@@ -180,7 +197,8 @@ var UIController = (function () {
         int = numSplit[0];
         dec = numSplit[1];
 
-        return (type === 'expense' ? '-' : '+') + ' ' + int + '.' + dec;
+        // (type === 'expense' ? '-' : '+') + ' ' + 
+        return int + '.' + dec;
     }
 
 
@@ -213,10 +231,10 @@ var UIController = (function () {
             // create html string with placeholder text
             if (type === '+') {
                 element = DOMStrings.incomeContainer;
-                html = '<tr id="income-%id%"><td class="income_name_row">%name%</td><td class="income_amount_row">%amount%</td><td class="income_description_row">%description%</td><td class="delete_edit_income"><a class="edit" style="text-decoration: underline">Edit</a> | <a class="delete" style="text-decoration: underline;">Delete</a></td></tr>'
+                html = '<tr id="income-%id%"><td class="income_name_row">%name%</td><td class="income_amount_row">£%amount%</td><td class="income_description_row">%description%</td><td class="delete_edit_income"><a class="edit" data-toggle="modal" data-target="#editIncomeModal" href="#editIncomeModal" style="text-decoration: underline">Edit</a> | <a class="delete" style="text-decoration: underline;">Delete</a></td></tr>'
             } else if (type === '-') {
                 element = DOMStrings.expensesContainer;
-                html = '<tr id="expense-%id%"><td class="expense_name_row">%name%</td><td class="expense_amount_row">%amount%</td><td class="expense_description_row">%description%</td><td class="delete_edit_expense"><a class="edit" style="text-decoration: underline">Edit</a> | <a class="delete" style="text-decoration: underline">Delete</a></td></tr>'
+                html = '<tr id="expense-%id%"><td class="expense_name_row">%name%</td><td class="expense_amount_row">£%amount%</td><td class="expense_description_row">%description%</td><td class="delete_edit_expense"><a class="edit"  data-toggle="modal" data-target="#editExpenseModal" href="#editExpenseModal" style="text-decoration: underline">Edit</a> | <a class="delete" style="text-decoration: underline">Delete</a></td></tr>'
             }
             //  replace the placeholder text with actual data
             newHTML = html.replace('%id%', obj.id);
@@ -231,6 +249,11 @@ var UIController = (function () {
         deleteListItem: function (rowID) {
             var row = document.getElementById(rowID);
             row.parentNode.removeChild(row);
+        },
+
+        eidtListItem: function(rowID) {
+            var row = document.getElementById(rowID);
+            row.refresh ();
         },
 
         orderListItems: function (order, list) {
@@ -265,15 +288,15 @@ var UIController = (function () {
             var type;
             obj.budget > 0 ? type = 'income' : type = 'expense';
 
-            document.querySelector(DOMStrings.monthlyTotal).textContent = formatNumber(obj.budget, type);
-            document.querySelector(DOMStrings.totalIncome).textContent = formatNumber(obj.totalInc, 'income');
-            document.querySelector(DOMStrings.totalExpense).textContent = formatNumber(obj.totalExp, 'expense');
-
             if (obj.budget < 0) {
                 document.querySelector('.monthly-total').style.background = '#e54120';
             } else if (obj.budget > 0) {
                 document.querySelector('.monthly-total').style.background = '#579d1f';
             }
+
+            document.querySelector(DOMStrings.monthlyTotal).textContent = '£' + formatNumber(obj.budget, type);
+            document.querySelector(DOMStrings.totalIncome).textContent = '£' + formatNumber(obj.totalInc, 'income');
+            document.querySelector(DOMStrings.totalExpense).textContent = '£' + formatNumber(obj.totalExp, 'expense');
         },
 
         getDOMStrings: function () {
@@ -298,20 +321,12 @@ var controller = (function (dataCtrl, UICtrl) {
         document.querySelector('.main-row').addEventListener('click', ctrlDeleteItem);
 
         document.querySelector('.incomes').addEventListener('input', function (event) {
-
-            // Only run on our select menu
             if (event.target.id !== 'income-select') return;
-
-            // console.log(event.target.value);
             UICtrl.orderListItems(event.target.value, 'i');
-
         }, false);
 
         document.querySelector('.expenses').addEventListener('input', function (event) {
-
-            // Only run on our select menu
             if (event.target.id !== 'expenses-select') return;
-
             UICtrl.orderListItems(event.target.value, 'e');
         }, false);
 
@@ -379,6 +394,11 @@ var controller = (function (dataCtrl, UICtrl) {
             }
 
         }
+    }
+
+    var ctrlEditItem = function(event) {
+        // grab the stuff from the modal and pass it to the data edit item method 
+        // call the ui edit itel method to refresh
     }
 
     return {

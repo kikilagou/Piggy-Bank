@@ -135,6 +135,45 @@
                 </div>
             </div>
 
+            <!-- MODAL FOR EDITING EXPENSE -->
+            <div class="modal" id="editExpenseModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h3 class="modal-title">Edit expense</h3>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <div class="form-field">
+                                <label><b>Change  name</b></label><br>
+                                <input type="text" name="name" value="" id="expense-name" placeholder="Rent"
+                                    list="outgoings">
+                            </div>
+                            <div class="form-field">
+                                <label><b>Expense description</b></label>
+                                <textarea name="description" cols="40" rows="3" id="expense-description"
+                                    placeholder="Home, home on the range"></textarea> </div>
+                            <div class="form-field">
+                                <label><b>Amount(in £)</b></label><br>
+                                <input type="text" name="amount" value="" id="expense-amount" placeholder="400">
+                            </div>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <!-- <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Cancel</button> -->
+                            <button type="button" value="-" class="btn btn-success btn-block" id="expense-button"
+                                data-dismiss="modal">Add</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
 
             <!-- INCOME -->
             <section class="col incomes">

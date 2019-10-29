@@ -21,3 +21,13 @@ issues:
 Log in :
 - google log in apis
 
+TODO:
+- change colour back to green if total goes back to 0 or above 
+- style the tables
+- add DB access
+- add option for other currencies
+- add edit capabilites to the entries in the table 
+    - add event listener to open modal when the edit button is pressed
+    - get the data form the modal and pass it to the edit method in the controller whihc passes it to the data module and the UI
+    - in the edit modals set the text to be the current item's values for name description and amount then the user can change them if they want by deleting them so get the parent element of the edit button? and grab the info like that?
+- add placeholder for when there are no bills to show
