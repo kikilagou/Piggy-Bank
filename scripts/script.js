@@ -162,13 +162,13 @@ var UIController = (function () {
                 y = rows[i + 1].getElementsByTagName("TD");
 
                 // Check if 2 rows need to be switched 
-                if (order === "low-high") {
-                    if (x[1].innerHTML > y[1].innerHTML) {
+                if (order === "low-high") {            
+                    if (parseInt(x[1].innerHTML.substring(1)) > parseInt(y[1].innerHTML.substring(1))) {
                         Switch = true;
                         break;
                     }
                 } else if (order === "high-low") {
-                    if (x[1].innerHTML < y[1].innerHTML) {
+                    if (parseInt(x[1].innerHTML.substring(1)) < parseInt(y[1].innerHTML.substring(1))) {
                         Switch = true;
                         break;
                     }
