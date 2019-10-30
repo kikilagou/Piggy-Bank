@@ -74,7 +74,7 @@
                                 <div class="form-field">
                                     <label><b>Income name</b></label><br>
                                     <input type="text" name="name" value="" id="income-name" placeholder="Rent"
-                                        list="incomings" required/>
+                                        list="incomings" required />
                                 </div>
                                 <div class="form-field">
                                     <label><b>Income description</b></label>
@@ -82,14 +82,16 @@
                                         placeholder="Home, home on the range"></textarea> </div>
                                 <div class="form-field">
                                     <label><b>Amount(in £)</b></label><br>
-                                    <input type="text" name="amount" value="" id="income-amount" placeholder="400" required/>
+                                    <input type="text" name="amount" value="" id="income-amount" placeholder="400"
+                                        required />
                                 </div>
                             </div>
 
                             <!-- Modal footer -->
                             <div class="modal-footer">
                                 <!-- <button type="button" class="btn btn-danger mr-auto" data-dismiss="modal">Cancel</button> -->
-                                <button type="submit" value="+" class="btn btn-success btn-block" id="income-button" data-dismiss="modal">Add</button>
+                                <button type="submit" value="+" class="btn btn-success btn-block" id="income-button"
+                                    data-dismiss="modal">Add</button>
                             </div>
                         </div>
                     </div>
@@ -225,23 +227,28 @@
                     <div class="breakdown-section">overview</div>
                 </div>
 
-                <table class="table table-bordered" id="income_list">
+                <table class="table" id="income_list">
                     <!-- <col span="4" style="border-top: 1px solid lightgray;" /> -->
-                    <thead>
+                    <!-- <thead>
                         <tr>
                             <th>Name</th>
                             <th class="table_float_right">Amount</th>
                             <th>Description</th>
                             <th>Edit/Delete</th>
                         </tr>
-                    </thead>
+                    </thead> -->
                     <tbody class="income_container">
-
+                        <tr style="border-bottom: 2px solid black;">
+                            <th class="table-heading">Name</th>
+                            <th class="table_float_right table-heading">Amount</th>
+                            <th class="table-heading">Description</th>
+                            <th class="table-heading">Edit/Delete</th>
+                        </tr>
                     </tbody>
                     <tfoot>
-                        <tr class="no-bottom-border">
-                            <th class="table_float_right">Total</th>
-                            <td></td>
+                        <tr class="no-bottom-border" style="border-top: 2px solid black;">
+                            <th class="table_float_right table-heading">Total</th>
+                            <td id="income-table-total"  class="table_float_right"></td>
                             <td colspan="2"></td>
                         </tr>
                     </tfoot>
@@ -281,15 +288,21 @@
                     <div class="breakdown-section">overview</div>
                 </div>
                 <table class="table" id="expenses_list">
-                    <thead>
+                    <!-- <thead>
                         <tr>
                             <th>Name</th>
                             <th>Amount</th>
                             <th>Description</th>
                             <th>Edit/Delete</th>
                         </tr>
-                    </thead>
+                    </thead> -->
                     <tbody class="expenses_container">
+                        <tr style="border-bottom: 2px solid black;">
+                            <th class="table-heading">Name</th>
+                            <th class="table_float_right table-heading">Amount</th>
+                            <th class="table-heading">Description</th>
+                            <th class="table-heading">Edit/Delete</th>
+                        </tr>
                         <!-- <tr id="expense-0">
                                 <td class="expense_name_row">Rent</td>
                                 <td class="expense_amount_row">1300</td>
@@ -298,9 +311,9 @@
                             </tr> -->
                     </tbody>
                     <tfoot>
-                        <tr>
-                            <th>Total</th>
-                            <td></td>
+                        <tr style="border-top: 2px solid black;">
+                            <th class="table_float_right table-heading" >Total</th>
+                            <td id="expense-table-total" class="table_float_right"></td>
                             <td colspan="2"></td>
                         </tr>
                     </tfoot>

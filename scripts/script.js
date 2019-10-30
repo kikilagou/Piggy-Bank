@@ -232,10 +232,10 @@ var UIController = (function () {
             // create html string with placeholder text
             if (type === '+') {
                 element = DOMStrings.incomeContainer;
-                html = '<tr id="income-%id%"><td class="income_name_row">%name%</td><td class="income_amount_row">£%amount%</td><td class="income_description_row">%description%</td><td class="delete_edit_income"><a class="edit" data-toggle="modal" data-target="#editIncomeModal" href="#editIncomeModal" style="text-decoration: underline">Edit</a> | <a class="delete" style="text-decoration: underline;">Delete</a></td></tr>'
+                html = '<tr id="income-%id%"><td class="income_name_row table-heading">%name%</td><td class="income_amount_row table_float_right ">£%amount%</td><td class="income_description_row table-heading">%description%</td><td class="delete_edit_income table-heading"><a class="edit" data-toggle="modal" data-target="#editIncomeModal" href="#editIncomeModal" style="text-decoration: underline; color: black;">Edit</a> | <a class="delete" style="text-decoration: underline;">Delete</a></td></tr>'
             } else if (type === '-') {
                 element = DOMStrings.expensesContainer;
-                html = '<tr id="expense-%id%"><td class="expense_name_row">%name%</td><td class="expense_amount_row">£%amount%</td><td class="expense_description_row">%description%</td><td class="delete_edit_expense"><a class="edit"  data-toggle="modal" data-target="#editExpenseModal" href="#editExpenseModal" style="text-decoration: underline">Edit</a> | <a class="delete" style="text-decoration: underline">Delete</a></td></tr>'
+                html = '<tr id="expense-%id%"><td class="expense_name_row table-heading">%name%</td><td class="expense_amount_row table_float_right ">£%amount%</td><td class="expense_description_row table-heading">%description%</td><td class="delete_edit_expense table-heading"><a class="edit"  data-toggle="modal" data-target="#editExpenseModal" href="#editExpenseModal" style="text-decoration: underline; color: black;">Edit</a> | <a class="delete" style="text-decoration: underline">Delete</a></td></tr>'
             }
             //  replace the placeholder text with actual data
             newHTML = html.replace('%id%', obj.id);
@@ -329,6 +329,8 @@ var UIController = (function () {
             document.querySelector(DOMStrings.monthlyTotal).textContent = '£' + formatNumber(obj.budget, type);
             document.querySelector(DOMStrings.totalIncome).textContent = '£' + formatNumber(obj.totalInc, 'income');
             document.querySelector(DOMStrings.totalExpense).textContent = '£' + formatNumber(obj.totalExp, 'expense');
+            document.querySelector("#income-table-total").textContent = '£' + formatNumber(obj.totalInc, 'income');
+            document.querySelector("#expense-table-total").textContent = '£' + formatNumber(obj.totalExp, 'expense');
         },
 
         getDOMStrings: function () {
