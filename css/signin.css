@@ -128,3 +128,8 @@ textarea {
     padding-right: 1rem;
     position: inline;
 }
+
+
+.g-signin2 {
+    width: 100%;
+}
