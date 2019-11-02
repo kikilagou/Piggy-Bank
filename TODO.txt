@@ -38,4 +38,6 @@ TODO:
 - add categorisation to the expenses and incomes 
 - Generate monthly reports based on the inputs and write custom alerts for things, like, “spending too much money on food as always.”
 
+- wrap text on decription in the tables  OR set max characters
+
 https://stackoverflow.com/questions/34240728/how-to-display-html-required-before-calling-bootstrap-modal

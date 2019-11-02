@@ -27,6 +27,7 @@ body {
 h1,
 h3 {
     font-weight: bold;
+    
     /* margin-bottom: 3rem; */
 }
 
@@ -110,6 +111,7 @@ th {
 .navbar {
     background-color: var(--background);
     border-bottom: 3px solid black;
+    margin-bottom: 2em;
 }
 
 .navbar a {
@@ -148,6 +150,7 @@ th {
     border-radius: 4px 4px 0 0;
     font-weight: 400;
 }
+
 
 .wrap {
     max-width: 84rem;
@@ -272,5 +275,4 @@ a:hover {
 }
 
 a.edit:hover { color: red; }
-
 

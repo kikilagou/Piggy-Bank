@@ -1,0 +1,130 @@
+:root {
+    --highlight: #e54120;
+    --gray0: #000205;
+    --gray1: #36393f;
+    --gray2: #bcbec2;
+    --gray3: #f6f6f6;
+    --red: #e54120;
+    --text: var(--gray0);
+    --meta: var(--gray1);
+    --divider: var(--gray2);
+    --background: var(--gray3);
+    --safe: #579d1f;
+    --unsafe: var(--red);
+    --frugal: #ff9900;
+    --inputBg: rgba(0, 0, 0, 0.05);
+    --inputFocus: rgba(4, 89, 219, 0.1);
+    --inputFocusBorder: #0459db;
+}
+
+.wrap {
+    max-width: 50rem;
+    padding: 1.5rem;
+    margin: 0 auto;
+}
+
+
+body {
+    font-family: "IBM Plex Sans", -apple-system, system-ui;
+    color: var(--text);
+    font-size:1.125em;
+    background-color: var(--background);
+}
+
+
+h1,
+h3 {
+    font-weight: bold;
+    /* margin-bottom: 3rem; */
+}
+
+
+h2 {
+    margin-bottom: 0;
+}
+
+
+th {
+    text-align: center;
+}
+
+hr {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+a {
+    text-decoration: underline;
+    font-size: 1.125rem;
+    cursor: pointer;
+}
+
+select {
+    box-sizing: border-box;
+    padding: .25em .75em;
+    background-color: var(--inputBg);
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    border-bottom: 2px solid var(--divider);
+    border-radius: 4px 4px 0 0;
+    background: var(--inputBg);
+    padding: 0.5rem;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    /* Remove default arrow */
+}
+
+/* SIGN IN PAGE CSS */
+
+
+input,
+select,
+textarea {
+    box-sizing: border-box;
+    color: inherit;
+    width: 100%;
+    min-height: 2rem;
+    padding: .25em .75em;
+    background-color: var(--inputBg);
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    border-bottom: 2px solid var(--divider);
+    border-radius: 4px 4px 0 0;
+    font-weight: 400;
+    margin-bottom: 1.5em;
+    margin-top:-1em;
+}
+
+.sign-in-form {
+    width: 27rem;
+    display: inline-block;
+    margin-top:1em;
+}
+
+.log-in-form {
+    width: 27rem;
+    display: inline-block;
+    margin-top:1em;
+}
+
+
+
+.navbar {
+    background-color: var(--background);
+    border-bottom: 3px solid black;
+}
+
+.navbar a {
+    font-weight: 700;
+    text-decoration: none;
+    color: black;
+}
+
+.navbar-nav li {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    position: inline;
+}

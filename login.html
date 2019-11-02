@@ -1,13 +1,12 @@
 <!doctype html>
 
-<html lang="en">
+<!-- <html lang="en">
   <head>
 
-    <!-- Bootstrap CSS -->
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <!-- Styles and Fonts -->
     <link rel="stylesheet" type="text/css" href="css/signin.css">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono|IBM+Plex+Sans:400,400i,700,700i&amp;display=swap"
         rel="stylesheet">
@@ -16,9 +15,11 @@
     <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="YOUR_CLIENT_ID.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="754457099576-ct2u9jaqr2382jcs7qcq4e2cdpkpert0.apps.googleusercontent.com">
   </head>
   <body class="wrap">
-      <!-- Navbar -->
     <nav class="navbar navbar-expand">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -31,26 +32,48 @@
         </div>
     </nav><br>
 
-    <h1>Sign Up</h1>
+    <h1>Log In</h1>
 
-    <p>Hey there! Plase fill in your details below to create a new account. You will be signed in automatically after registering.</p>
+    <p>Welcome back! Enter your detials below to view your dashboard.</p>
 
-    <form class="sign-in-form">
-      <label><b>First Name:</b></label>
-      <input type="text" placeholder="Kiki Lagou" required />
+    <form class="log-in-form">
       <label><b>Email:</b></label>
       <input type="text" placeholder="example@email.com" required />
-      <label><b>New Password:</b></label>
+      <label><b>Password:</b></label>
       <input type="text" placeholder="*******" required /><br>
-      <label><b>Confirm Password:</b></label>
-      <input type="text" placeholder="*******" required />
-      <br>
-      <button type="submit" class="btn btn-success btn-block">Sign Up</button>
-      <a>Already have an account? Sign in</a>
+    
+      <button type="submit" class="btn btn-success btn-block">Log In</button>
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+      <a>Forgot your password?</a>
 
 
     </form>
 
 
   </body>
+</html> -->
+
+
+<html>
+<head>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="754457099576-ct2u9jaqr2382jcs7qcq4e2cdpkpert0.apps.googleusercontent.com">
+</head>
+<body>
+  <div class="g-signin2" data-onsuccess="onSignedIn" data-theme="dark"></div>
+  <a href="#" onclick="signOut();" id="signout"></a>
+  <script>
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut();
+    }
+
+    function onSignedIn(googleUser) {
+      const signoutElement = document.getElementById('signout');
+      signoutElement.innerHTML =
+          'Sign out ' + googleUser.getBasicProfile().getEmail();
+    }
+  </script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+</body>
 </html>
