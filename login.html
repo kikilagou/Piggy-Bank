@@ -38,7 +38,7 @@
       <input type="text" placeholder="*******" required /><br>
     
       <button type="submit" class="btn btn-success btn-block">Log In</button>
-      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+      <div class="g-signin2 btn-block" data-onsuccess="onSignIn"></div>
       <a>Forgot your password?</a>
 
 
@@ -47,28 +47,3 @@
 
   </body>
 </html>
-
-<!-- 
-<html>
-<head>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-    <meta name="google-signin-client_id" content="754457099576-ct2u9jaqr2382jcs7qcq4e2cdpkpert0.apps.googleusercontent.com">
-</head>
-<body>
-  <div class="g-signin2" data-onsuccess="onSignedIn" data-theme="dark"></div>
-  <a href="#" onclick="signOut();" id="signout"></a>
-  <script>
-    function signOut() {
-      var auth2 = gapi.auth2.getAuthInstance();
-      auth2.signOut();
-    }
-
-    function onSignedIn(googleUser) {
-      const signoutElement = document.getElementById('signout');
-      signoutElement.innerHTML =
-          'Sign out ' + googleUser.getBasicProfile().getEmail();
-    }
-  </script>
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
-</body>
-</html> -->
